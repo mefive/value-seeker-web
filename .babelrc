@@ -1,0 +1,15 @@
+{
+  "presets": [
+    "@babel/typescript",
+    "@babel/preset-env",
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["import", { "libraryName": "antd",  "style": false },  "antd"],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    "@babel/proposal-object-rest-spread",
+    "@babel/plugin-syntax-dynamic-import",
+    "babel-plugin-styled-components"
+  ]
+}

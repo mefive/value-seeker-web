@@ -1,0 +1,10 @@
+/node_modules/
+.npm-debug.*
+/.idea/
+/build/
+/dev/
+.project
+*.DS_Store
+.env
+/config/local.config.js
+.vscode

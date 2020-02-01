@@ -1,0 +1,5 @@
+node_modules
+build
+**/svg/icons/**/*.*
+config/local.config.js
+src/lib
