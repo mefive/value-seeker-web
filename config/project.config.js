@@ -21,18 +21,6 @@ exports.entries = [
     src: './src/app/Main/index',
     template: './src/templates/main.html',
   },
-  {
-    name: 'bpm',
-    src: './src/app/Bpm/index',
-    template: './src/templates/bpm.ejs',
-    inject: false,
-  },
-  {
-    name: 'bpm-mobile',
-    src: './src/app/BpmMobile/index',
-    template: './src/templates/bpm.ejs',
-    inject: false,
-  },
 ];
 
 exports.dllEntry = {
@@ -49,10 +37,6 @@ exports.dllEntry = {
     'react-dom',
     'prop-types',
     'react-router-dom',
-    'redux',
-    'redux-saga',
-    'redux-actions',
-    'react-redux',
     'mobx',
     'mobx-react',
   ],
@@ -113,7 +97,6 @@ exports.webpackConfigOverrides = defaultConfig => {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       alias: {
         '@': path.resolve('src'),
-        '@ant-design/icons/lib/dist$': path.resolve('src/antd-icons.js'),
       },
     },
 

@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src --fix",
+    "check-types": "tsc",
+    "build": "webpack --mode=production --env.buildTarget=dll --config webpack.config.js && webpack --mode=production --config webpack.config.js",
+    "app": "webpack --mode=production --config webpack.config.js",
+    "dev": "webpack --mode=development --env.buildTarget=dll --config webpack.config.js && webpack-dev-server --mode=development --config webpack.config.js"
   },
   "author": "",
   "license": "ISC",
@@ -23,7 +28,7 @@
     "@types/qs": "^6.5.3",
     "@types/react-dom": "^16.8.4",
     "@types/react-router-dom": "^5.1.0",
-    "@types/styled-components": "4.1.8",
+    "@types/styled-components": "^4.1.8",
     "@typescript-eslint/eslint-plugin": "^2.5.0",
     "@typescript-eslint/parser": "^2.5.0",
     "babel-eslint": "^10.0.1",
@@ -41,6 +46,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "file-loader": "^5.0.2",
     "html-webpack-plugin": "^4.0.0-beta.11",
     "html-webpack-tags-plugin": "^2.0.12",
     "less": "^3.9.0",
