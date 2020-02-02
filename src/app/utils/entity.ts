@@ -1,4 +1,4 @@
-import { Entities } from 'types';
+import { Entities } from 'types.ts';
 import { composeSkipNull } from '../../utils/object';
 
 export function mergeEntities<T>(object: Entities<T>, source: Entities<T>, key: keyof T): void {

@@ -1,4 +1,4 @@
-import { Entities, IdTreeNode, PagingResponse, PagingSuccess, TreeNode, } from 'types';
+import { Entities, IdTreeNode, PagingResponse, PagingSuccess, TreeNode, } from 'types.ts';
 import { walkTree } from '../../utils/tree';
 
 export function makeQueryParams<

@@ -11,15 +11,15 @@ const contextPath = '/';
 exports.contextPath = contextPath;
 
 exports.devServerProxy = [{
-  context: ['/module', '/project/eoi'],
-  target: 'http://eoi.test.sogou',
+  context: ['/api'],
+  target: 'http://localhost:3000',
 }];
 
 exports.entries = [
   {
     name: 'main',
     src: './src/app/Main/index',
-    template: './src/templates/main.html',
+    template: './src/templates/index.html',
   },
 ];
 
@@ -42,10 +42,10 @@ exports.dllEntry = {
   ],
 };
 
-exports.webpackConfigOverrides = defaultConfig => {
+exports.webpackConfigOverrides = (defaultConfig) => {
   const config = _.cloneDeep(defaultConfig);
 
-  _.remove(config.module.rules, rule => rule.test.toString() === /\.less/.toString());
+  _.remove(config.module.rules, (rule) => rule.test.toString() === /\.less/.toString());
 
   return merge(config, {
     module: {
