@@ -1,18 +1,33 @@
 import { ConfigProvider } from 'antd';
-import zhCN from 'antd/es/locale/zh_CN';
-import { Router } from 'react-router-dom';
 import 'antd/dist/antd.less';
-import 'reflect-metadata';
+import zhCN from 'antd/es/locale/zh_CN';
 import 'core-js/stable';
+import { Provider } from 'mobx-react';
+import React from 'react';
+import * as ReactDOM from 'react-dom';
+import { Router } from 'react-router-dom';
+import 'reflect-metadata';
 import 'regenerator-runtime/runtime';
 import { ThemeProvider } from 'styled-components';
-import * as ReactDOM from 'react-dom';
-import React from 'react';
-import { createHistory } from '../config/history';
+import Notification from '../components/Notification';
 import { basename } from '../config/constants';
+import { createHistory } from '../config/history';
+import container from '../container';
+import NotificationStore from '../store/NotificationStore';
+import theme from '../style/theme';
 import mobxStoreSpy from '../utils/mobxStoreSpy';
 import Main from './Main';
-import theme from '../style/theme';
+
+window.addEventListener(
+  'unhandledrejection',
+  (event: PromiseRejectionEvent) => {
+    const { message } = event.reason as Error;
+
+    container
+      .get(NotificationStore)
+      .error(message || JSON.stringify(event.reason));
+  },
+);
 
 function main() {
   const history = createHistory(basename);
@@ -22,9 +37,14 @@ function main() {
   ReactDOM.render(
     <ConfigProvider locale={zhCN}>
       <ThemeProvider theme={theme}>
-        <Router history={history}>
-          <Main />
-        </Router>
+        <Provider notificationStore={container.get(NotificationStore)}>
+          <>
+            <Router history={history}>
+              <Main />
+            </Router>
+            <Notification />
+          </>
+        </Provider>
       </ThemeProvider>
     </ConfigProvider>,
     document.getElementById('app'),

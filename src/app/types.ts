@@ -14,14 +14,14 @@ export interface Option {
 }
 
 export interface PagingRequest {
-  page?: number;
-  size?: number;
-  searchName?: string;
+  page: number;
+  size: number;
+  search?: string;
 }
 
 export interface PagingResponse<T> {
   result: T[],
-  totalNumber: number;
+  total: number;
 }
 
 export interface PagingSuccess<T> {
@@ -30,14 +30,17 @@ export interface PagingSuccess<T> {
   total: number;
 }
 
-export type TreeNode<T = {}> = T & BaseEntity & {
+export type BaseTreeNode<T = {}> = T & {
+  children?: BaseTreeNode<T>[];
+};
+
+export type TreeNode<T = {}> = BaseTreeNode<T & BaseEntity & {
   parentId: string | null;
   pathname: string;
-  children?: (T & TreeNode)[];
   childrenIds?: string[];
   level: number;
   showOrder?: number;
-};
+}>;
 
 export type IdTreeNode<T = {}> = T & {
   id: string;

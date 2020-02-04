@@ -60,29 +60,6 @@ exports.webpackConfigOverrides = (defaultConfig) => {
               options: {
                 javascriptEnabled: true,
                 modifyVars: {
-                  'font-family': `"Helvetica Neue", "PingFangSC-Regular",
-                  "Chinese Quote", -apple-system, BlinkMacSystemFont, 
-                  "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", 
-                  Helvetica, Arial, sans-serif,
-                  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
-
-                  'primary-color': '#7E8AEF',
-                  'link-color': '#6E7DF9',
-                  'menu-dark-bg': '#313350',
-                  'menu-dark-submenu-bg': '#313350',
-                  'menu-item-height': '56px',
-                  'menu-inline-toplevel-item-height': '56px',
-                  'menu-dark-item-active-bg': '#6F77AA',
-
-                  'tree-child-padding': '12px',
-
-                  'card-radius': '6px',
-
-                  'heading-color': 'rgba(42, 42, 68, 1)',
-                  'text-color': 'rgba(42, 42, 68, .8)',
-                  'text-color-secondary': 'rgba(42, 42, 68, .6)',
-                  'disabled-color': 'rgba(42, 42, 68, .3)',
-
                   'zindex-modal': 1001,
                   'zindex-modal-mask': 1001,
                 },

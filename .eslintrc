@@ -3,7 +3,9 @@
     "@typescript-eslint"
   ],
   "extends": [
-    "airbnb-typescript"
+    "airbnb-typescript",
+    "prettier",
+    "prettier/react"
   ],
   "env": {
     "node": true,

@@ -1,8 +1,12 @@
-import { Entities } from 'types.ts';
+import { Entities } from 'types';
 import { composeSkipNull } from '../../utils/object';
 
-export function mergeEntities<T>(object: Entities<T>, source: Entities<T>, key: keyof T): void {
-  Object.values(source).forEach(o => {
+export function mergeEntities<T>(
+  object: Entities<T>,
+  source: Entities<T>,
+  key: keyof T,
+): void {
+  Object.values(source).forEach((o) => {
     const k = `${o[key]}`;
     object[k] = composeSkipNull<T, T>(o, object[k]);
   });
