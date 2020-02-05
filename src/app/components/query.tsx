@@ -13,7 +13,7 @@ function Query(props: { children: JSX.Element | JSX.Element[] }) {
 function QueryItem(props: {
   id?: string;
   label?: string;
-  control?: JSX.Element;
+  control?: JSX.Element | string;
   children?: JSX.Element | JSX.Element[];
   className?: string;
 }) {

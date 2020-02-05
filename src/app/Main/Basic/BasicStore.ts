@@ -12,6 +12,7 @@ import { makeQueryParams, normalizePage } from '../../utils/helpers';
 export interface BasicQuery extends PagingRequest {
   assetType: AssetType;
   tsCode: string | null;
+  market: string | null;
 }
 
 export type Basic = StockBasic & IndexBasic;
@@ -28,12 +29,15 @@ class BasicStore {
   @observable.shallow basics: Entities<Basic> = {};
 
   @observable.shallow query: BasicQuery = {
-    tsCode: null,
+    tsCode: '000001.SH',
     assetType: AssetType.INDEX,
     page: 1,
     size: 10,
     search: '',
+    market: null,
   };
+
+  @observable.ref dailyBasic: Basic | null = null;
 
   @action('FILL_BASIC')
   fillBasic(basics: Entities<Basic>) {
@@ -77,14 +81,30 @@ class BasicStore {
 
   updateDaily = task(
     action('UPDATE_DAILY', async (tsCode: string) => {
-      const successResponse = await axios.post<string>('/api/daily/load', {
-        tsCode,
-        assetType: this.query.assetType,
-      });
-      this.notificationStore.success(successResponse.data);
+      await Promise.all([
+        axios.post('/api/daily/load', {
+          tsCode,
+          assetType: this.query.assetType,
+        }),
+        axios.post('/api/daily-basic/load', {
+          tsCode,
+          assetType: this.query.assetType,
+        }),
+      ]);
+      this.notificationStore.success(`更新 ${tsCode} 日级数据成功`);
       await this.fetchBasicPage();
     }),
   );
+
+  @action('OPEN_DAILY')
+  openDaily(basic: Basic) {
+    this.dailyBasic = basic;
+  }
+
+  @action('CLOSE_DAILY')
+  closeDaily() {
+    this.dailyBasic = null;
+  }
 }
 
 export default BasicStore;

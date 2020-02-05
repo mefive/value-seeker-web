@@ -156,7 +156,7 @@ function Basic() {
                     <ClickableText
                       onClick={() => {
                         Modal.confirm({
-                          title: '是否更新日交易数据？',
+                          title: '是否更新日交易、日基本面数据？',
                           content: `${record.name} ${record.tsCode}`,
                           onOk: () => basicStore.updateDaily(record.tsCode),
                         });
@@ -164,7 +164,17 @@ function Basic() {
                     >
                       更新
                     </ClickableText>
-                    <ClickableText css={ml(1)}>查看</ClickableText>
+
+                    {record.endDate != null && (
+                      <ClickableText
+                        css={ml(1)}
+                        onClick={() => {
+                          basicStore.openDaily(record);
+                        }}
+                      >
+                        查看
+                      </ClickableText>
+                    )}
                   </>
                 ),
               },
