@@ -17,7 +17,7 @@ exports.devServerProxy = [{
 
 exports.entries = [
   {
-    name: 'main',
+    name: 'index',
     src: './src/app/Main/index',
     template: './src/templates/index.html',
   },

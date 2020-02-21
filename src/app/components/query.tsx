@@ -4,7 +4,12 @@ import { mt } from '../style/utils';
 
 function Query(props: { children: JSX.Element | JSX.Element[] }) {
   return (
-    <div css={mt(-2)}>
+    <div
+      css={`
+        ${mt(-2)};
+        overflow: hidden;
+      `}
+    >
       <Row gutter={16}>{props.children}</Row>
     </div>
   );
@@ -16,16 +21,17 @@ function QueryItem(props: {
   control?: JSX.Element | string;
   children?: JSX.Element | JSX.Element[];
   className?: string;
+  span?: number;
 }) {
-  const { id, label, control, children, className } = props;
+  const { id, label, control, children, className, span } = props;
   return (
     <Col
-      xs={24}
-      sm={12}
-      md={12}
-      lg={8}
-      xl={8}
-      xxl={6}
+      xs={span ?? 24}
+      sm={span ?? 12}
+      md={span ?? 12}
+      lg={span ?? 8}
+      xl={span ?? 8}
+      xxl={span ?? 6}
       className={className}
       css={mt(2)}
     >
